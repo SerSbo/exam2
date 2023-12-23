@@ -1,0 +1,47 @@
+#include <iostream>
+
+void fill(char matrix[10][10], int x, int y, char border, char fillchar)
+{
+	if (matrix[y][x] != border && matrix[y][x] != fillchar)
+	{
+		matrix[y][x] = fillchar;
+		fill(matrix, x + 1, y, border, fillchar);
+		fill(matrix, x - 1, y, border, fillchar);
+		fill(matrix, x, y + 1, border, fillchar);
+		fill(matrix, x, y - 1, border, fillchar);
+	}
+}
+
+int main() {
+
+	char matrix[10][10] = {
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		{ 0, '*', '*', '*', '*', '*', '*', '*', 0, 0 },
+		{ 0, '*', 0, 0, 0, 0, 0, '*', 0, 0 },
+		{ 0, '*', 0, 0, 0, 0, 0, '*', 0, 0 },
+		{ 0, '*', 0, 0, 0, 0, 0, '*', 0, 0 },
+		{ 0, '*', 0, 0, 0, 0, 0, '*', 0, 0 },
+		{ 0, '*', '*', '*', '*', '*', '*', '*', 0, 0 },
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+	};
+
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			std::cout << matrix[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
+	fill(matrix, 4, 4, '*', '?');
+	std::cout << std::endl;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			std::cout << matrix[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
+
+
+	return 0;
+}
